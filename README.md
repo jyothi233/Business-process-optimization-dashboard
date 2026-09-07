@@ -131,7 +131,8 @@ Operational improvements were achieved through a structured analysis approach:
 To run the pipeline and explore the dashboard locally:
 ```bash
 # Clone the repository and install dependencies
-git clone https://github.com/girishshenoy16/business-process-optimization.git
+git clone https://github.com/jyothi233/business-process-optimization-dashboard.git
+cd business-process-optimization-dashboard
 cd business-process-optimization
 python -m venv .venv
 .venv\Scripts\activate # On Mac use: source .venv/bin/activate  
