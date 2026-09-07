@@ -1,0 +1,382 @@
+const dashboardData = {
+    "global_kpis": {
+        "total_records": 105000,
+        "total_volume": 2737354,
+        "total_completed": 2623793,
+        "total_cost": 144037231.57,
+        "cost_per_task": 54.9,
+        "process_efficiency_pct": 85.65,
+        "productivity_pct": 89.29,
+        "sla_achievement_pct": 41.55,
+        "avg_cycle_time": 23.53,
+        "avg_standard_cycle_time": 20.36,
+        "error_rate_pct": 4.15,
+        "rework_rate_pct": 2.06,
+        "task_completion_rate": 95.85,
+        "customer_complaint_rate": 13.96
+    },
+    "department_analysis": [
+        {
+            "department": "Customer Service",
+            "count": 15752,
+            "avg_cycle_time": 56.79,
+            "avg_std_cycle_time": 48.0,
+            "avg_productivity": 91.11,
+            "avg_efficiency": 85.83,
+            "sla_achievement_pct": 43.4,
+            "total_cost": 32874757.99,
+            "error_rate_pct": 2.37,
+            "rework_rate_pct": 1.14
+        },
+        {
+            "department": "Finance",
+            "count": 15546,
+            "avg_cycle_time": 29.9,
+            "avg_std_cycle_time": 24.0,
+            "avg_productivity": 83.99,
+            "avg_efficiency": 82.85,
+            "sla_achievement_pct": 38.43,
+            "total_cost": 25963117.44,
+            "error_rate_pct": 6.94,
+            "rework_rate_pct": 3.46
+        },
+        {
+            "department": "Human Resources",
+            "count": 5221,
+            "avg_cycle_time": 74.08,
+            "avg_std_cycle_time": 72.0,
+            "avg_productivity": 98.58,
+            "avg_efficiency": 91.54,
+            "sla_achievement_pct": 49.91,
+            "total_cost": 15870046.89,
+            "error_rate_pct": 1.26,
+            "rework_rate_pct": 0.65
+        },
+        {
+            "department": "IT Operations",
+            "count": 21148,
+            "avg_cycle_time": 12.39,
+            "avg_std_cycle_time": 12.0,
+            "avg_productivity": 95.98,
+            "avg_efficiency": 91.36,
+            "sla_achievement_pct": 50.24,
+            "total_cost": 15203701.47,
+            "error_rate_pct": 4.2,
+            "rework_rate_pct": 2.08
+        },
+        {
+            "department": "Operations",
+            "count": 47333,
+            "avg_cycle_time": 9.77,
+            "avg_std_cycle_time": 8.0,
+            "avg_productivity": 86.41,
+            "avg_efficiency": 83.32,
+            "sla_achievement_pct": 37.15,
+            "total_cost": 54125607.78,
+            "error_rate_pct": 4.04,
+            "rework_rate_pct": 2.0
+        }
+    ],
+    "process_analysis": [
+        {
+            "process_name": "Customer Onboarding",
+            "department": "Customer Service",
+            "count": 15752,
+            "avg_cycle_time": 56.79,
+            "std_cycle_time": 48.0,
+            "avg_productivity": 91.11,
+            "avg_efficiency": 85.83,
+            "sla_achievement_pct": 43.4,
+            "total_cost": 32874757.99,
+            "error_rate_pct": 2.37,
+            "rework_rate_pct": 1.14
+        },
+        {
+            "process_name": "Employee Offboarding",
+            "department": "Human Resources",
+            "count": 5221,
+            "avg_cycle_time": 74.08,
+            "std_cycle_time": 72.0,
+            "avg_productivity": 98.58,
+            "avg_efficiency": 91.54,
+            "sla_achievement_pct": 49.91,
+            "total_cost": 15870046.89,
+            "error_rate_pct": 1.26,
+            "rework_rate_pct": 0.65
+        },
+        {
+            "process_name": "IT Support Ticket",
+            "department": "IT Operations",
+            "count": 21148,
+            "avg_cycle_time": 12.39,
+            "std_cycle_time": 12.0,
+            "avg_productivity": 95.98,
+            "avg_efficiency": 91.36,
+            "sla_achievement_pct": 50.24,
+            "total_cost": 15203701.47,
+            "error_rate_pct": 4.2,
+            "rework_rate_pct": 2.08
+        },
+        {
+            "process_name": "Invoice Processing",
+            "department": "Finance",
+            "count": 15546,
+            "avg_cycle_time": 29.9,
+            "std_cycle_time": 24.0,
+            "avg_productivity": 83.99,
+            "avg_efficiency": 82.85,
+            "sla_achievement_pct": 38.43,
+            "total_cost": 25963117.44,
+            "error_rate_pct": 6.94,
+            "rework_rate_pct": 3.46
+        },
+        {
+            "process_name": "Order Fulfillment",
+            "department": "Operations",
+            "count": 47333,
+            "avg_cycle_time": 9.77,
+            "std_cycle_time": 8.0,
+            "avg_productivity": 86.41,
+            "avg_efficiency": 83.32,
+            "sla_achievement_pct": 37.15,
+            "total_cost": 54125607.78,
+            "error_rate_pct": 4.04,
+            "rework_rate_pct": 2.0
+        }
+    ],
+    "monthly_trends": [
+        {
+            "month": "2025-06",
+            "count": 8730,
+            "total_cost": 11100193.18,
+            "avg_cycle_time": 22.51,
+            "sla_achievement_pct": 44.46
+        },
+        {
+            "month": "2025-07",
+            "count": 8883,
+            "total_cost": 11335355.3,
+            "avg_cycle_time": 22.66,
+            "sla_achievement_pct": 44.62
+        },
+        {
+            "month": "2025-08",
+            "count": 8850,
+            "total_cost": 11818404.77,
+            "avg_cycle_time": 22.81,
+            "sla_achievement_pct": 41.98
+        },
+        {
+            "month": "2025-09",
+            "count": 8717,
+            "total_cost": 11329621.94,
+            "avg_cycle_time": 22.97,
+            "sla_achievement_pct": 43.68
+        },
+        {
+            "month": "2025-10",
+            "count": 8986,
+            "total_cost": 14256676.08,
+            "avg_cycle_time": 26.05,
+            "sla_achievement_pct": 36.01
+        },
+        {
+            "month": "2025-11",
+            "count": 8570,
+            "total_cost": 13647851.95,
+            "avg_cycle_time": 25.82,
+            "sla_achievement_pct": 35.74
+        },
+        {
+            "month": "2025-12",
+            "count": 8939,
+            "total_cost": 14167182.97,
+            "avg_cycle_time": 25.71,
+            "sla_achievement_pct": 36.01
+        },
+        {
+            "month": "2026-01",
+            "count": 8974,
+            "total_cost": 11971307.62,
+            "avg_cycle_time": 23.15,
+            "sla_achievement_pct": 42.56
+        },
+        {
+            "month": "2026-02",
+            "count": 7975,
+            "total_cost": 10435523.23,
+            "avg_cycle_time": 22.87,
+            "sla_achievement_pct": 42.68
+        },
+        {
+            "month": "2026-03",
+            "count": 8813,
+            "total_cost": 11091830.18,
+            "avg_cycle_time": 22.64,
+            "sla_achievement_pct": 44.82
+        },
+        {
+            "month": "2026-04",
+            "count": 8783,
+            "total_cost": 11224130.65,
+            "avg_cycle_time": 22.25,
+            "sla_achievement_pct": 43.87
+        },
+        {
+            "month": "2026-05",
+            "count": 8780,
+            "total_cost": 11659153.7,
+            "avg_cycle_time": 22.85,
+            "sla_achievement_pct": 42.27
+        }
+    ],
+    "bottlenecks": [
+        {
+            "process_name": "Customer Onboarding",
+            "employee": "CS_User_03",
+            "department": "Customer Service",
+            "count": 1056,
+            "avg_cycle_time": 102.55,
+            "std_cycle_time": 48.0,
+            "sla_achievement_pct": 0.76,
+            "avg_productivity": 49.62,
+            "error_rate_pct": 3.31,
+            "total_cost": 5898279.11
+        },
+        {
+            "process_name": "Customer Onboarding",
+            "employee": "CS_User_07",
+            "department": "Customer Service",
+            "count": 1141,
+            "avg_cycle_time": 101.51,
+            "std_cycle_time": 48.0,
+            "sla_achievement_pct": 0.79,
+            "avg_productivity": 50.41,
+            "error_rate_pct": 3.16,
+            "total_cost": 5410147.03
+        },
+        {
+            "process_name": "Invoice Processing",
+            "employee": "Fin_User_03",
+            "department": "Finance",
+            "count": 1539,
+            "avg_cycle_time": 30.45,
+            "std_cycle_time": 24.0,
+            "sla_achievement_pct": 36.19,
+            "avg_productivity": 83.41,
+            "error_rate_pct": 6.54,
+            "total_cost": 2826447.65
+        },
+        {
+            "process_name": "Invoice Processing",
+            "employee": "Fin_User_04",
+            "department": "Finance",
+            "count": 1541,
+            "avg_cycle_time": 30.13,
+            "std_cycle_time": 24.0,
+            "sla_achievement_pct": 38.68,
+            "avg_productivity": 83.61,
+            "error_rate_pct": 6.99,
+            "total_cost": 2675354.13
+        },
+        {
+            "process_name": "Invoice Processing",
+            "employee": "Fin_User_08",
+            "department": "Finance",
+            "count": 1551,
+            "avg_cycle_time": 30.05,
+            "std_cycle_time": 24.0,
+            "sla_achievement_pct": 37.59,
+            "avg_productivity": 83.71,
+            "error_rate_pct": 6.95,
+            "total_cost": 2897392.96
+        },
+        {
+            "process_name": "Invoice Processing",
+            "employee": "Fin_User_02",
+            "department": "Finance",
+            "count": 1550,
+            "avg_cycle_time": 30.0,
+            "std_cycle_time": 24.0,
+            "sla_achievement_pct": 38.13,
+            "avg_productivity": 83.6,
+            "error_rate_pct": 7.04,
+            "total_cost": 2957117.68
+        },
+        {
+            "process_name": "Invoice Processing",
+            "employee": "Fin_User_06",
+            "department": "Finance",
+            "count": 1649,
+            "avg_cycle_time": 29.94,
+            "std_cycle_time": 24.0,
+            "sla_achievement_pct": 38.63,
+            "avg_productivity": 83.62,
+            "error_rate_pct": 7.18,
+            "total_cost": 2439949.22
+        },
+        {
+            "process_name": "Invoice Processing",
+            "employee": "Fin_User_01",
+            "department": "Finance",
+            "count": 1525,
+            "avg_cycle_time": 29.92,
+            "std_cycle_time": 24.0,
+            "sla_achievement_pct": 36.98,
+            "avg_productivity": 83.98,
+            "error_rate_pct": 6.63,
+            "total_cost": 2431331.3
+        },
+        {
+            "process_name": "Invoice Processing",
+            "employee": "Fin_User_05",
+            "department": "Finance",
+            "count": 1540,
+            "avg_cycle_time": 29.92,
+            "std_cycle_time": 24.0,
+            "sla_achievement_pct": 38.96,
+            "avg_productivity": 84.23,
+            "error_rate_pct": 6.84,
+            "total_cost": 2273197.55
+        },
+        {
+            "process_name": "Invoice Processing",
+            "employee": "Fin_User_07",
+            "department": "Finance",
+            "count": 1517,
+            "avg_cycle_time": 29.66,
+            "std_cycle_time": 24.0,
+            "sla_achievement_pct": 38.43,
+            "avg_productivity": 83.89,
+            "error_rate_pct": 7.34,
+            "total_cost": 2129855.43
+        }
+    ],
+    "opportunities": [
+        {
+            "opportunity": "Continuous Monitoring",
+            "count": 66365,
+            "percentage": 63.2
+        },
+        {
+            "opportunity": "Cycle Time Reduction (Resource Allocation)",
+            "count": 22540,
+            "percentage": 21.47
+        },
+        {
+            "opportunity": "Client Feedback Loop Restructuring",
+            "count": 8297,
+            "percentage": 7.9
+        },
+        {
+            "opportunity": "Quality Audit & Staff Training",
+            "count": 4530,
+            "percentage": 4.31
+        },
+        {
+            "opportunity": "Rework Automation (RPA Implementation)",
+            "count": 3268,
+            "percentage": 3.11
+        }
+    ]
+};

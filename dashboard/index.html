@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Process Optimization & Efficiency Dashboard</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation & Filters -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-chart-line logo-icon"></i>
+                <div class="brand-details">
+                    <h2>ProcessOptima</h2>
+                    <span class="sub-brand">Operational Excellence Hub</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3><i class="fa-solid fa-filter header-icon"></i> Slicers & Filters</h3>
+                
+                <div class="filter-group">
+                    <label for="dept-filter">Department</label>
+                    <select id="dept-filter" class="form-control">
+                        <option value="All">All Departments</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="process-filter">Process Name</label>
+                    <select id="process-filter" class="form-control">
+                        <option value="All">All Processes</option>
+                    </select>
+                </div>
+                
+                <button id="reset-filters" class="btn btn-secondary">
+                    <i class="fa-solid fa-rotate-left"></i> Reset Filters
+                </button>
+            </div>
+            
+            <div class="recruiter-card">
+                <h4><i class="fa-solid fa-file-invoice"></i> Executive Summary</h4>
+                <div class="exec-kpi-grid">
+                    <div class="exec-kpi-item">
+                        <span class="exec-kpi-val" id="exec-depts">5</span>
+                        <span class="exec-kpi-lbl">Depts</span>
+                    </div>
+                    <div class="exec-kpi-item">
+                        <span class="exec-kpi-val" id="exec-processes">5</span>
+                        <span class="exec-kpi-lbl">Processes</span>
+                    </div>
+                    <div class="exec-kpi-item">
+                        <span class="exec-kpi-val" id="exec-records">105K</span>
+                        <span class="exec-kpi-lbl">Logs Audited</span>
+                    </div>
+                    <div class="exec-kpi-item">
+                        <span class="exec-kpi-val" id="exec-period">12M</span>
+                        <span class="exec-kpi-lbl">Period</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard View -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button id="sidebar-toggle" class="sidebar-toggle-btn" title="Toggle Filters Sidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div>
+                        <h1>Business Process Optimization & Efficiency Dashboard</h1>
+                        <p class="header-desc">Executive View: Key Performance Indicators (KPIs), bottleneck detection, and operational recommendations.</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="data-indicator">
+                        <span class="pulse-dot"></span>
+                        <span>Processed Dataset: 105,000 unique records</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="kpi-grid">
+                <div class="kpi-card bg-highlight-card">
+                    <div class="kpi-icon-container bg-navy-highlight">
+                        <i class="fa-solid fa-piggy-bank"></i>
+                    </div>
+                    <div class="kpi-data">
+                        <span class="kpi-title font-highlight">Annual Savings Opp.</span>
+                        <div class="kpi-value-container">
+                            <span class="kpi-value val-highlight" id="kpi-savings">$1.85M</span>
+                            <span class="kpi-status-badge status-good" id="kpi-savings-status">🟢 Target</span>
+                        </div>
+                        <span class="kpi-trend positive"><i class="fa-solid fa-arrow-trend-up"></i> Projected Savings Target</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-icon-container bg-blue">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <div class="kpi-data">
+                        <span class="kpi-title">Process Efficiency %</span>
+                        <div class="kpi-value-container">
+                            <span class="kpi-value" id="kpi-efficiency">0%</span>
+                            <span class="kpi-status-badge" id="kpi-efficiency-status">-</span>
+                        </div>
+                        <span class="kpi-trend positive"><i class="fa-solid fa-circle-info"></i> Std vs Actual Cycle Time</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-icon-container bg-amber">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <div class="kpi-data">
+                        <span class="kpi-title">SLA Achievement %</span>
+                        <div class="kpi-value-container">
+                            <span class="kpi-value" id="kpi-sla">0%</span>
+                            <span class="kpi-status-badge" id="kpi-sla-status">-</span>
+                        </div>
+                        <span class="kpi-trend negative" id="kpi-sla-sub">Target &lt; Std Cycle Time</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-icon-container bg-slate">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </div>
+                    <div class="kpi-data">
+                        <span class="kpi-title">Total Process Cost</span>
+                        <div class="kpi-value-container">
+                            <span class="kpi-value" id="kpi-cost">$0</span>
+                        </div>
+                        <span class="kpi-trend neutral" id="kpi-cost-sub">Cost per completed task</span>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-icon-container bg-red">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </div>
+                    <div class="kpi-data">
+                        <span class="kpi-title">Error Rate %</span>
+                        <div class="kpi-value-container">
+                            <span class="kpi-value" id="kpi-error">0%</span>
+                            <span class="kpi-status-badge" id="kpi-error-status">-</span>
+                        </div>
+                        <span class="kpi-trend negative" id="kpi-rework">0% Rework Rate</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Executive Decision Center -->
+            <section class="executive-decision-container">
+                <div class="executive-decision-card">
+                    <div class="decision-header">
+                        <h3><i class="fa-solid fa-crosshairs text-amber"></i> Executive Decision Center</h3>
+                        <span class="decision-subtitle">Strategic projections and investment targets for C-Suite alignment</span>
+                    </div>
+                    <div class="decision-metrics-row">
+                        <div class="decision-metric">
+                            <span class="dec-lbl">Annual Savings Opportunity</span>
+                            <span class="dec-val text-teal">$1.85M</span>
+                        </div>
+                        <div class="decision-metric">
+                            <span class="dec-lbl">Highest Risk Process</span>
+                            <span class="dec-val text-red">CS Onboarding</span>
+                        </div>
+                        <div class="decision-metric">
+                            <span class="dec-lbl">Target Initiative</span>
+                            <span class="dec-val text-navy">Dynamic Load Balancing</span>
+                        </div>
+                        <div class="decision-metric">
+                            <span class="dec-lbl">Max Projected ROI</span>
+                            <span class="dec-val text-amber">633%</span>
+                        </div>
+                        <div class="decision-metric">
+                            <span class="dec-lbl">Payback Period</span>
+                            <span class="dec-val text-slate">4.8 Months</span>
+                        </div>
+                    </div>
+                    <div class="decision-banner-footer">
+                        <i class="fa-solid fa-circle-info"></i> <strong>C-Suite Advisory:</strong> Audit of 105k logs identifies Customer Onboarding SLA compliance at 32.4%. Restructuring CS routing, deploying Q4 Finance OCR, and realigning Operations shifts will capture 100% of target savings.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts Grid Section -->
+            <section class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3><i class="fa-solid fa-chart-bar"></i> Department Performance (Hours)</h3>
+                        <span class="chart-subtitle">Actual vs Standard Cycle Time by Department</span>
+                    </div>
+                    <div class="chart-wrapper dept-height">
+                        <canvas id="deptChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3><i class="fa-solid fa-chart-pie"></i> Cost Contribution by Process</h3>
+                        <span class="chart-subtitle">Distribution of total process costs</span>
+                    </div>
+                    <div class="chart-wrapper cost-height">
+                        <canvas id="costChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container full-width">
+                    <div class="chart-header">
+                        <h3><i class="fa-solid fa-chart-line"></i> SLA Achievement & Cost Trends</h3>
+                        <span class="chart-subtitle">SLA Achievement % and Operational Cost trends over time</span>
+                    </div>
+                    <div class="chart-wrapper trend-height">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bottlenecks & Opportunities Section -->
+            <section class="details-grid">
+                <!-- Bottleneck Detection -->
+                <div class="detail-card">
+                    <div class="detail-header">
+                        <h3><i class="fa-solid fa-triangle-exclamation text-amber"></i> Process Bottlenecks (Top 5 Slowest Resources)</h3>
+                        <span class="detail-subtitle">Identified based on cycle time deviation from standard limits.</span>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table" id="bottleneck-table">
+                            <thead>
+                                <tr>
+                                    <th>Process Name</th>
+                                    <th>Employee</th>
+                                    <th>Dept</th>
+                                    <th>Avg Cycle Time</th>
+                                    <th>SLA %</th>
+                                    <th>Error %</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Process Improvement Opportunities -->
+                <div class="detail-card">
+                    <div class="detail-header">
+                        <h3><i class="fa-solid fa-lightbulb text-teal"></i> Improvement Opportunities</h3>
+                        <span class="detail-subtitle">Data-driven classifications recommending specific interventions.</span>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table" id="opportunity-table">
+                            <thead>
+                                <tr>
+                                    <th>Opportunity Classification</th>
+                                    <th>Case Count</th>
+                                    <th>Share %</th>
+                                    <th>Priority</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Executive Business Recommendations Section -->
+            <section class="recommendations-section">
+                <div class="recommendations-header">
+                    <h2><i class="fa-solid fa-file-invoice-dollar"></i> Executive Strategic Action Plan</h2>
+                    <p>Immediate process improvement and cost saving initiatives based on automated data analytics.</p>
+                </div>
+                <div class="recommendations-body">
+                    <!-- Action Card 1 -->
+                    <div class="rec-card" data-dept="Customer Service" data-process="Customer Onboarding">
+                        <div class="rec-card-header">
+                            <span class="badge-rec rec-priority-high">Rank #1 • High</span>
+                            <span class="rec-dept">CS Operations</span>
+                        </div>
+                        <h4 class="rec-title">Redesign CS Onboarding Routing</h4>
+                        <div class="rec-metrics-grid">
+                            <div class="rec-metric-item">
+                                <span class="rec-metric-label">Savings</span>
+                                <span class="rec-metric-val">$880K/Yr</span>
+                            </div>
+                            <div class="rec-metric-item">
+                                <span class="rec-metric-label">ROI %</span>
+                                <span class="rec-metric-val">180%</span>
+                            </div>
+                            <div class="rec-metric-item">
+                                <span class="rec-metric-label">Timeline</span>
+                                <span class="rec-metric-val">2-3 Mon</span>
+                            </div>
+                        </div>
+                        <div class="rec-details">
+                            <div class="rec-detail-row">
+                                <strong>Business Issue:</strong>
+                                <span>SLA sits at 32.4% due to capacity bottlenecks under CS_User_03/CS_User_07.</span>
+                            </div>
+                            <div class="rec-detail-row">
+                                <strong>Recommended Action:</strong>
+                                <span>Deploy automated CRM capacity-based routing & credit verification API.</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Card 2 -->
+                    <div class="rec-card" data-dept="Finance" data-process="Invoice Processing">
+                        <div class="rec-card-header">
+                            <span class="badge-rec rec-priority-med">Rank #2 • Medium</span>
+                            <span class="rec-dept">Finance Dept</span>
+                        </div>
+                        <h4 class="rec-title">OCR Invoice Processing Automation</h4>
+                        <div class="rec-metrics-grid">
+                            <div class="rec-metric-item">
+                                <span class="rec-metric-label">Savings</span>
+                                <span class="rec-metric-val">$450K/Yr</span>
+                            </div>
+                            <div class="rec-metric-item">
+                                <span class="rec-metric-label">ROI %</span>
+                                <span class="rec-metric-val">275%</span>
+                            </div>
+                            <div class="rec-metric-item">
+                                <span class="rec-metric-label">Timeline</span>
+                                <span class="rec-metric-val">1-2 Mon</span>
+                            </div>
+                        </div>
+                        <div class="rec-details">
+                            <div class="rec-detail-row">
+                                <strong>Business Issue:</strong>
+                                <span>Q4 manual data-entry volume overload driving invoicing error rates to 12.5%.</span>
+                            </div>
+                            <div class="rec-detail-row">
+                                <strong>Recommended Action:</strong>
+                                <span>Deploy Optical Character Recognition (OCR) scanners & Robotic Process Automation (RPA) ERP rules.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Card 3 -->
+                    <div class="rec-card" data-dept="Operations" data-process="Order Fulfillment">
+                        <div class="rec-card-header">
+                            <span class="badge-rec rec-priority-high">Rank #3 • High</span>
+                            <span class="rec-dept">Operations Dept</span>
+                        </div>
+                        <h4 class="rec-title">Fulfillment Shift Realignment</h4>
+                        <div class="rec-metrics-grid">
+                            <div class="rec-metric-item">
+                                <span class="rec-metric-label">Savings</span>
+                                <span class="rec-metric-val">$520K/Yr</span>
+                            </div>
+                            <div class="rec-metric-item">
+                                <span class="rec-metric-label">ROI %</span>
+                                <span class="rec-metric-val">633%</span>
+                            </div>
+                            <div class="rec-metric-item">
+                                <span class="rec-metric-label">Timeline</span>
+                                <span class="rec-metric-val">Immediate</span>
+                            </div>
+                        </div>
+                        <div class="rec-details">
+                            <div class="rec-detail-row">
+                                <strong>Business Issue:</strong>
+                                <span>Fulfillment cycle time surges on Fridays/Saturdays by 85%, causing customer complaints.</span>
+                            </div>
+                            <div class="rec-detail-row">
+                                <strong>Recommended Action:</strong>
+                                <span>Restructure warehouse shift schedules to align with weekend order influx and cargo slots.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Business Impact Summary Footer -->
+            <footer class="business-impact-footer">
+                <div class="footer-summary-grid">
+                    <div class="footer-summary-item">
+                        <span class="footer-summary-lbl">Critical Bottlenecks</span>
+                        <span class="footer-summary-val text-red" id="footer-bottleneck">Customer Onboarding</span>
+                    </div>
+                    <div class="footer-summary-item">
+                        <span class="footer-summary-lbl">Annual Savings Opportunity</span>
+                        <span class="footer-summary-val text-teal" id="footer-savings">$1,850,000 / Year</span>
+                    </div>
+                    <div class="footer-summary-item">
+                        <span class="footer-summary-lbl">Highest Risk Process</span>
+                        <span class="footer-summary-val text-amber" id="footer-risk">Customer Onboarding (43.4% SLA)</span>
+                    </div>
+                    <div class="footer-summary-item">
+                        <span class="footer-summary-lbl">Recommended Initiative</span>
+                        <span class="footer-summary-val text-navy" id="footer-initiative">CRM Routing & OCR Ingest</span>
+                    </div>
+                    <div class="footer-summary-item">
+                        <span class="footer-summary-lbl">Expected ROI</span>
+                        <span class="footer-summary-val text-teal" id="footer-roi">633% Max</span>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <span>ProcessOptima Enterprise BI Dashboard &copy; Girish Shenoy 2026. All rights reserved. Confidential Executive Report.</span>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Inject data first, then app script -->
+    <script src="data/dashboard_data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
